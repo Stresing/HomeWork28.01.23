@@ -6,11 +6,10 @@ public class program {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        
-
+    ex0();
     }
 
-    static void ex1() {
+    static void ex1() { //Задан целочисленный список ArrayList. Найти минимальное, максимальное и среднее арифметическое из этого списка. Collections.max()
         System.out.println("Какой длины заполнить список ?: ");
         int n = scanner.nextInt();
         Random random = new Random();
@@ -26,7 +25,7 @@ public class program {
         average(listEx1);
     }
 
-    static void ex0() {
+    static void ex0() { //Пусть дан произвольный список целых чисел, удалить из него четные числа
         List listEx0 = new ArrayList<Integer>();
         listEx0 = fullFillingList();
         System.out.println("Изначальный список: " + listEx0);
