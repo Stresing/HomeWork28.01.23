@@ -1,46 +1,54 @@
 import java.io.StreamCorruptedException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class program {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        test();
-        // ex0();
+        
 
     }
 
-    static void test() {
-        List<Integer> list = new ArrayList<Integer>();
-        list.add(-1);
-        list.add(4);
-        list.add(-5);
-        list.add(1);
-        System.out.println("Max value is: "+ Collections.max(list));
+    static void ex1() {
+        System.out.println("Какой длины заполнить список ?: ");
+        int n = scanner.nextInt();
+        Random random = new Random();
+        List<Integer> listEx1 = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            listEx1.add(random.nextInt(100));
+        }
+        System.out.println("Изначальный список: " + listEx1);
+        System.out.println("Максимальное значение в списке: " +
+                Collections.max(listEx1));
+        System.out.println("Минимальное значение в списке: " +
+                Collections.min(listEx1));
+        average(listEx1);
     }
-    // static void ex1() {
-    // List listEx1 = new ArrayList<>();
-    // listEx1 = fullFillingList();
-    // int max = Collection.min(listEx1);
-    // System.out.println("Изначальный список: " + listEx1);
-    // System.out.println(max);
-    // }
 
     static void ex0() {
-        List listEx0 = new ArrayList<>();
+        List listEx0 = new ArrayList<Integer>();
         listEx0 = fullFillingList();
         System.out.println("Изначальный список: " + listEx0);
         System.out.println("Конечный список: " + delEvenNumber(listEx0));
 
     }
 
+    static void average(List <Integer>list) {
+        double sum = 0;
+        
+        for (int i = 0; i < list.size(); i++) {
+            sum = sum +list.get(i);
+        }
+        double averageList =sum/list.size();
+       System.out.println("Среднее арифметическое = "+ averageList);
+        
+    }
+
     static List fullFillingList() {
         System.out.println("Сколько элементов вы хотите положить в список? ");
         String len = scanner.nextLine();
-        List list = new ArrayList<>();
+        List list = new ArrayList<Integer>();
         while (isNum(len) != true) {
             System.out.println("Сколько элементов вы хотите положить в список? ");
             len = scanner.nextLine();
@@ -57,7 +65,7 @@ public class program {
 
     static List fillingList(String str) { // Хотел добавить во внутрь fullFillingList однако от туда fillingList
                                           // отказывался работать
-        List list = new ArrayList<>();
+        List list = new ArrayList<Integer>();
         for (int i = 0; i < Integer.valueOf(str); i++) {
             System.out.println("Вводите числа в список через enter: ");
             String num = scanner.nextLine();
@@ -70,22 +78,20 @@ public class program {
         return (List) list;
     }
 
-    static List delEvenNumber(List some_list) {
-        for (int i = 0; i < some_list.size(); i++) {
-            Object numFromList = some_list.get(i); // Вопрос можно ли этот кусок кода заменить более коротко
+    static List delEvenNumber(List someList) {
+        for (int i = 0; i < someList.size(); i++) {
+            Object numFromList = someList.get(i); // Вопрос можно ли этот кусок кода заменить более коротко
             String numFromObject = numFromList.toString(); // что бы не конвертировать по 10 раз
 
             if (Integer.valueOf(numFromObject) % 2 == 0) {
-                some_list.remove(i);
+                someList.remove(i);
                 i--;
             }
 
         }
-        return some_list;
+        return someList;
     }
 
-    // static void average(List list){
-    // }
     public static boolean isNum(String str) {
         try {
             Double.parseDouble(str);
